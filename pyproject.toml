@@ -1,0 +1,9 @@
+[project]
+name = "message-box"
+version = "0.1.0"
+description = "a box for messages"
+requires-python = ">=3.11"
+dependencies = [
+    "esptool>=5.1.0",
+    "mpremote>=1.27.0",
+]
