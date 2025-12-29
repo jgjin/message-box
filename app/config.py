@@ -1,6 +1,7 @@
+# These are GPIO pins
 GPIO_SCK = 12
 GPIO_MOSI = 11
 GPIO_DC = 9
-GPIO_CS = 10
 GPIO_RST = 14
+GPIO_CS = 10
 GPIO_SERVO = 15
