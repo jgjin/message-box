@@ -3,6 +3,7 @@ import time
 
 import secrets
 
+
 def connect_wifi(
     ssid: str,
     password: str,
@@ -22,5 +23,6 @@ def connect_wifi(
         time.sleep(0.5)
 
     print("Wi-Fi connected, IP:", wlan.ifconfig()[0])
+
 
 connect_wifi(secrets.SSID, secrets.PASSWORD, timeout_seconds=6)

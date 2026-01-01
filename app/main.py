@@ -6,19 +6,30 @@ from machine import Pin, SPI, PWM
 import config
 import secrets
 
+
 def log_debug(s):
     print("DEBUG:", time.time(), s)
+
 
 def log_error(s):
     print("ERROR:", time.time(), s)
 
-display_spi = SPI(1, baudrate=40000000, sck=Pin(config.GPIO_SCK), mosi=Pin(config.GPIO_MOSI))
-display = Display(display_spi, dc=Pin(config.GPIO_DC), cs=Pin(config.GPIO_CS), rst=Pin(config.GPIO_RST))
+
+display_spi = SPI(
+    1, baudrate=40000000, sck=Pin(config.GPIO_SCK), mosi=Pin(config.GPIO_MOSI)
+)
+display = Display(
+    display_spi,
+    dc=Pin(config.GPIO_DC),
+    cs=Pin(config.GPIO_CS),
+    rst=Pin(config.GPIO_RST),
+)
 
 servo_pwm = PWM(Pin(config.GPIO_SERVO), freq=50)
 
 touch_spi = SPI(2, baudrate=5_000_000, sck=Pin(4), mosi=Pin(5), miso=Pin(6))
 touch = Touch(spi=touch_spi, cs=Pin(7), int_pin=Pin(8))
+
 
 def setup_wifi():
     wlan = network.WLAN(network.STA_IF)
@@ -69,5 +80,6 @@ def main():
             else:
                 lowered = not lowered
                 lower_flag()
+
 
 main()
