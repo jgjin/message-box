@@ -14,3 +14,12 @@ Misc:
 - `idf.py set-target esp32s3`: set build target to esp32s3. Must be done at least
 once in order to flash.
 - `idf.py -p /dev/ttyACM0 -b 115200 flash`: flash
+
+
+## Server API.
+- `GET /message/<key>`
+   Request data is empty.
+   Response data is message (as `application/text`)
+- `POST /message/<key>`
+   Request data is message (as `application/text`)
+   Response data is empty.
