@@ -67,10 +67,12 @@ def main():
         return
 
     current_message = ""
+    i = 0
     while True:
         print(i)
+        display.clear(color565(255, 255, i))
+        display.draw_text8x8(0, 0, "Hello", color565(255,255,255))
         i = (i + 1) % 256
-        display.clear(color565(0, 0, i))
         time.sleep(0.125)
         print(touch.get_touch())
         if i % 16 == 0:
