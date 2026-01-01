@@ -5,6 +5,7 @@ from xpt2046 import Touch
 from machine import Pin, SPI, PWM
 import config
 import secrets
+import urequests
 
 
 def log_debug(s):
@@ -62,26 +63,62 @@ lower_flag()
 flag_rasied = False
 
 
+bgcolor = color565(0, 128, 128)
+
+
 def main():
     if setup_wifi() == False:
         return
 
-    current_message = ""
+    current_message = None
     i = 0
+
+    lower_flag()
+    time.sleep(1)
+
     while True:
-        print(i)
-        display.clear(color565(255, 255, i))
-        display.draw_text8x8(0, 0, "Hello", color565(255,255,255))
-        i = (i + 1) % 256
-        time.sleep(0.125)
-        print(touch.get_touch())
-        if i % 16 == 0:
-            if lowered:
-                lowered = not lowered
-                raise_flag()
+        new_message = None
+        try:
+            new_message = urequests.get(config.SERVER_URL).content.decode("utf-8")
+        except:
+            pass
+
+        if new_message != current_message:
+            raise_flag()
+            current_message = new_message
+            print(current_message)
+            display.clear(bgcolor)
+            if current_message == None:
+                display.draw_text8x8(
+                    0,
+                    0,
+                    "<UNKNOWN>",
+                    color565(255, 255, 255),
+                    background=color565(255, 0, 0),
+                )
             else:
-                lowered = not lowered
-                lower_flag()
+                if len(current_message) > 0:
+                    display.draw_text8x8(
+                        10,
+                        10,
+                        current_message,
+                        color565(255, 255, 255),
+                        background=bgcolor,
+                    )
+
+        print(touch.raw_touch())
+        if touch.raw_touch() != None:
+            lower_flag()
+            display.draw_text8x8(
+                10, 30, "touched", color565(255, 255, 255), background=bgcolor
+            )
+        else:
+            display.draw_text8x8(
+                10, 30, "not touched", color565(255, 255, 255), background=bgcolor
+            )
+            print("No touch")
+
+        time.sleep(1.0)
 
 
 main()

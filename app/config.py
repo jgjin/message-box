@@ -8,3 +8,5 @@ GPIO_SERVO = 15
 
 # In seconds
 WIFI_CONNECT_TIMEOUT = 30
+
+SERVER_URL = "http://10.38.201.129:8000/message/example-key"
