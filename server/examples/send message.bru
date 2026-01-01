@@ -1,0 +1,15 @@
+meta {
+  name: send message
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8001/message/example-key
+  body: text
+  auth: none
+}
+
+body:text {
+  *tips fedora* m'lady
+}

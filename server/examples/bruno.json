@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "message box server examples",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
