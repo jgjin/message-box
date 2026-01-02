@@ -691,6 +691,7 @@ dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "mip" },
     { name = "mpremote" },
+    { name = "uvicorn" },
 ]
 
 [package.dev-dependencies]
@@ -704,6 +705,7 @@ requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.128.0" },
     { name = "mip", specifier = ">=1.15.0" },
     { name = "mpremote", specifier = ">=1.27.0" },
+    { name = "uvicorn", specifier = ">=0.40.0" },
 ]
 
 [package.metadata.requires-dev]
