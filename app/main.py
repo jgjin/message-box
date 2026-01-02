@@ -86,7 +86,6 @@ def main():
         if new_message != current_message:
             raise_flag()
             current_message = new_message
-            print(current_message)
             display.clear(bgcolor)
             if current_message == None:
                 display.draw_text8x8(
@@ -106,19 +105,19 @@ def main():
                         background=bgcolor,
                     )
 
-        print(touch.raw_touch())
+
+        t = touch.raw_touch()
         if touch.raw_touch() != None:
             lower_flag()
             display.draw_text8x8(
-                10, 30, "touched", color565(255, 255, 255), background=bgcolor
+                10, 30, "Touched: yes", color565(255, 255, 255), background=bgcolor
             )
         else:
             display.draw_text8x8(
-                10, 30, "not touched", color565(255, 255, 255), background=bgcolor
+                10, 30, "Touched: no ", color565(255, 255, 255), background=bgcolor
             )
-            print("No touch")
 
-        time.sleep(1.0)
+        time.sleep(0.5)
 
 
 main()
