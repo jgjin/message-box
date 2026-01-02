@@ -6,6 +6,7 @@ from machine import Pin, SPI, PWM
 import config
 import secrets
 import urequests
+import esp
 
 
 def log_debug(s):
@@ -63,7 +64,7 @@ lower_flag()
 flag_rasied = False
 
 
-bgcolor = color565(0, 128, 128)
+bgcolor = color565(0, 0, 255)
 
 
 def main():
@@ -107,7 +108,8 @@ def main():
 
 
         t = touch.raw_touch()
-        if touch.raw_touch() != None:
+        print(t)
+        if t != None:
             lower_flag()
             display.draw_text8x8(
                 10, 30, "Touched: yes", color565(255, 255, 255), background=bgcolor

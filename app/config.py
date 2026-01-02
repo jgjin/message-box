@@ -9,4 +9,4 @@ GPIO_SERVO = 15
 # In seconds
 WIFI_CONNECT_TIMEOUT = 30
 
-SERVER_URL = "http://10.38.201.129:8000/message/example-key"
+SERVER_URL = "http://web-production-53f57.up.railway.app/message/example-key"
